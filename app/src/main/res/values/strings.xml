@@ -2,4 +2,6 @@
     <string name="app_name">Olutpaivakirja</string>
     <string name="calendarButton">Open Calendar</string>
     <string name="buttonAddDrink">Lisää juoma</string>
+    <string name="drinksDrunk">Juomia juotu</string>
+    <string name="undo">Undo</string>
 </resources>
