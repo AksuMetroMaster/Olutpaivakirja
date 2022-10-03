@@ -16,4 +16,5 @@ public class DrinkCounter {
         if(count > 0){
         count--;}
     }
+
 }

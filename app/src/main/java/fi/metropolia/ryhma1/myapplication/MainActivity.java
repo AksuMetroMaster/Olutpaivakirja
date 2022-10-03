@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
     private DrinkCounter drinks = new DrinkCounter();
+    private DrinkCounter water = new DrinkCounter();
     private TextView txtDrinks;
     private Object Menu;
 
