@@ -17,7 +17,7 @@
             android:name=".AsetusView"
             android:exported="false" />
         <activity
-            android:name=".CalendarView"
+            android:name=".CalendarViewControl"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity

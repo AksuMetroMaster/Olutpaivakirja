@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCalendar(View view) {
-        Intent intent = new Intent(this, CalendarView.class);
+        Intent intent = new Intent(this, CalendarViewControl.class);
 
         startActivity(intent);
     }
