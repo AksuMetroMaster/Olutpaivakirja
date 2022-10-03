@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return false;
+    } protected void onPause() {
+super.onPause();
     }
 
 }
