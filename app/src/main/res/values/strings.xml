@@ -4,4 +4,5 @@
     <string name="buttonAddDrink">Lisää juoma</string>
     <string name="drinksDrunk">Juomia juotu</string>
     <string name="undo">Undo</string>
+    <string name="buttonReset">Reset</string>
 </resources>
