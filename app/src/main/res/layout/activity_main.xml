@@ -6,24 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
+    <ImageButton
+        android:id="@+id/vesiButton"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/buttonAddWater"
+        android:cropToPadding="false"
+        android:onClick="addWater"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kaljaButton"
+        app:layout_constraintTop_toBottomOf="@+id/txtWaterCounter"
+        app:srcCompat="@drawable/vesi_photoroom"
+        tools:ignore="ImageContrastCheck" />
+
     <ImageButton
         android:id="@+id/kaljaButton"
-        android:layout_width="221dp"
-        android:layout_height="192dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="false"
         android:contentDescription="@string/buttonAddDrink"
+        android:cropToPadding="false"
         android:onClick="addDrink"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vesiButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:srcCompat="@drawable/kaljapullo_photoroom" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDrinkCounter"
+        app:srcCompat="@drawable/kaljapullo_photoroom"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/txtVisualElementDrinks"
@@ -33,66 +52,70 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29000002" />
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/txtDrinkCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/drinksDrunk"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txtWaterCounter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35000002" />
+        app:layout_constraintVertical_bias="0.32999998" />
 
     <TextView
         android:id="@+id/txtWaterCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/drinksDrunk"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtDrinkCounter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintStart_toEndOf="@+id/txtDrinkCounter" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/fAButtUndoWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="161dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:clickable="true"
         android:contentDescription="@string/drinksDrunk"
         android:onClick="undoDrink"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fAButtUndoDrink"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kaljaButton"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fAButtUndoDrink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/drinksDrunk"
+        android:onClick="undoWater"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/kaljaButton"
+        app:layout_constraintStart_toEndOf="@+id/fAButtUndoWater"
+        app:layout_constraintTop_toBottomOf="@+id/vesiButton"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
-    <ImageButton
-        android:id="@+id/vesiButton"
-        android:layout_width="62dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:adjustViewBounds="false"
-        android:cropToPadding="false"
-        android:onClick="addWater"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/vesi_photoroom" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/momTab"

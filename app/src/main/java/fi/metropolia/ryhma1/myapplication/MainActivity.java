@@ -74,13 +74,6 @@ public class MainActivity extends AppCompatActivity {
         txtDrinks.setText(Integer.toString(drinks.getCount()));
         txtWater.setText((Integer.toString(water.getCount())));
     }
-
-
-
-
-
-
-
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
@@ -117,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
         drinks.minus();
         //shows counter result onscreen
         txtDrinks.setText(Integer.toString(drinks.getCount()));
+    }
+    public void undoWater(View view){
+        water.minus();
+        //shows counter result onscreen
+        txtWater.setText(Integer.toString(water.getCount()));
     }
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
