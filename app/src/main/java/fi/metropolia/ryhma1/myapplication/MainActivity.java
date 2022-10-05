@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import com.google.android.material.tabs.TabLayout;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,12 +25,44 @@ public class MainActivity extends AppCompatActivity {
     private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private DrinkCounter drinks;
     private DrinkCounter water;
+    private TabLayout tabLayout;
+    private Intent intentMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        tabLayout=(TabLayout) findViewById(R.id.momTab);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                if (tab.getPosition() == 0) {
+                    intentMain = new Intent(MainActivity.this, MainActivity.class);
+
+                }
+                if (tab.getPosition() == 1) {
+                    intentMain = new Intent(MainActivity.this,
+                            CalendarViewControl.class);
+                    Log.e("TEST", "Painettiin toista");
+                    MainActivity.this.startActivity(intentMain);
+                }
+            }
+
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         txtDrinks = findViewById(R.id.txtDrinkCounter);
         txtWater = findViewById(R.id.txtWaterCounter);
 
@@ -40,6 +74,13 @@ public class MainActivity extends AppCompatActivity {
         txtDrinks.setText(Integer.toString(drinks.getCount()));
         txtWater.setText((Integer.toString(water.getCount())));
     }
+
+
+
+
+
+
+
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
