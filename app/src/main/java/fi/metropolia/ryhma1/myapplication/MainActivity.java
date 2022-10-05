@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtDrinks;
     private TextView txtWater;
     private Object Menu;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    private Calendar c = Calendar.getInstance();
-    private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    private DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
     private DrinkCounter drinks;
     private DrinkCounter water;
     private TabLayout tabLayout;
@@ -51,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.startActivity(intentMain);
                 }
             }
-
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
@@ -69,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
         refresh();
     }
     private void refresh(){
-        drinks = new DrinkCounter(sdf.format(c.getTime()));
-        water = new DrinkCounter(sdf2.format(c.getTime()));
+        now = LocalDateTime.now();
+        drinks = new DrinkCounter(dtf.format(now));
+        water = new DrinkCounter(dtf2.format(now));
         txtDrinks.setText(Integer.toString(drinks.getCount()));
         txtWater.setText((Integer.toString(water.getCount())));
     }
@@ -126,7 +127,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     } protected void onPause() {
-super.onPause();
+        super.onPause();
+
+
     }
 
 }

@@ -13,14 +13,14 @@ public class Safehouse {
     }
 
     private Safehouse() {
-        balls = new HashMap<String, Integer>();
+        this.balls = new HashMap<String, Integer>();
     }
     public void safehouseSave(String mouth, int ass){
-        balls.put(mouth, ass);
+        this.balls.put(mouth, ass);
         Log.i("whats in my balls", mouth+" "+ass);
     }
 
     public HashMap getDrunk(){
-        return balls;
+        return this.balls;
         }
 }

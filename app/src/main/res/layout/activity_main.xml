@@ -141,4 +141,15 @@
             android:text="@string/calendarButton" />
     </com.google.android.material.tabs.TabLayout>
 
+    <Button
+        android:id="@+id/Explode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="sendToSafehouse"
+        android:text="DEATH"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
