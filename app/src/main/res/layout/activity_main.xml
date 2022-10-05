@@ -91,9 +91,10 @@
         app:layout_constraintVertical_bias="0.051">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/mainPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Front page" />
+            android:text="@string/mainPage" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/calendarTab"
