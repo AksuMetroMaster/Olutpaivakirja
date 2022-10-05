@@ -3,13 +3,19 @@ package fi.metropolia.ryhma1.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;
+private TabLayout tabLayout;
+private Intent intentMain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +31,38 @@ private CalendarView calendarView;
                 String date = dayOfMonth+"/"+(month+1)+"/"+year;
                 Toast.makeText(getBaseContext(), "Selected date "+date,Toast.LENGTH_LONG).show();
                 Log.i("CalendarView says date is", date);
+            }
+        });
+
+        tabLayout=(TabLayout) findViewById(R.id.mainPage);
+        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        tab.select();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                if (tab.getPosition() == 1) {
+                    intentMain = new Intent(CalendarViewControl.this,
+                            CalendarViewControl.class);
+
+
+                }
+                if (tab.getPosition() == 0) {
+                    intentMain = new Intent(CalendarViewControl.this, MainActivity.class);
+                    Log.e("TEST", "Painettiin toista");
+                    CalendarViewControl.this.startActivity(intentMain);
+                }
+            }
+
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
     }

@@ -6,4 +6,5 @@
     <string name="undo">Undo</string>
     <string name="buttonAddWater">Lisää vesi</string>
     <string name="buttonReset">Reset</string>
+    <string name="mainPage">Front Page</string>
 </resources>
