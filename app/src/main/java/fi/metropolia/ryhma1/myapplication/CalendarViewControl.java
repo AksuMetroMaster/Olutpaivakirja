@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
@@ -21,7 +22,9 @@ private CalendarView calendarView;
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
                 //displays selected day onscreen
-                Toast.makeText(getBaseContext(), "Selected date "+dayOfMonth+"/"+month+"/"+year,Toast.LENGTH_LONG).show();
+                String date = dayOfMonth+"/"+(month+1)+"/"+year;
+                Toast.makeText(getBaseContext(), "Selected date "+date,Toast.LENGTH_LONG).show();
+                Log.i("CalendarView says date is", date);
             }
         });
     }

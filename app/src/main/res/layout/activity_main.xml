@@ -39,7 +39,7 @@
         tools:srcCompat="@drawable/kaljapullo_photoroom" />
 
     <TextView
-        android:id="@+id/txtVisualElementDrinks"
+        android:id="@+id/txtWaterCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/drinksDrunk"
@@ -85,6 +85,7 @@
         android:adjustViewBounds="false"
         android:contentDescription="@string/buttonAddWater"
         android:cropToPadding="false"
+        android:onClick="addWater"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,6 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
+        android:onClick="sendToSafehouse"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
