@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.CalendarView;
 import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -15,6 +18,9 @@ public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;
 private TabLayout tabLayout;
 private Intent intentMain;
+private ProgressBar progressBar;
+private TextView progressText;
+int vesiMaara = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,5 +71,28 @@ private Intent intentMain;
 
             }
         });
+        //Progress pyörän toiminta,
+        progressBar = findViewById(R.id.progress_bar);
+        progressText = findViewById(R.id.progress_text);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                // Asettaa Limitin veden määrälle ennen kun se on täynnä.
+                // Lisätään juominen määrä keskelle.
+                // Samalla haetaan int tieto vedestä.
+                if (vesiMaara <= 100) {
+                    progressText.setText("Juomien Määrä " + vesiMaara/10);
+                    progressBar.setProgress(vesiMaara);
+                    vesiMaara++;
+                    handler.postDelayed(this, 200);
+                } else {
+                    handler.removeCallbacks(this);
+                }
+            }
+        }, 200);
+
     }
 }
