@@ -7,8 +7,8 @@ public class DrinkCounter {
     private int count;
     private String time;
     //creates counter
-    public DrinkCounter(String date){
-        this.count = 0;
+    public DrinkCounter(String date, int count){
+        this.count = count;
         this.time = date;
         Log.d("Counter says", this.time);
     }

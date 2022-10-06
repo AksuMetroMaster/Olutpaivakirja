@@ -2,7 +2,9 @@ package fi.metropolia.ryhma1.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,19 +24,23 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtDrinks;
     private TextView txtWater;
     private Object Menu;
-    private DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    private DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDateTime now = LocalDateTime.now();
     private DrinkCounter drinks;
     private DrinkCounter water;
     private TabLayout tabLayout;
     private Intent intentMain;
-
+    private int waterCount = 0;
+    private int drinkCount = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences prefGet = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
+        waterCount = prefGet.getInt("Waters", 0);
+        drinkCount = prefGet.getInt("Drinks", 0);
 
         tabLayout=(TabLayout) findViewById(R.id.momTab);
 
@@ -68,10 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
         refresh();
     }
+    //resetoi näytön arvot takaisin nollaan ja aloittaa uuden laskun
     private void refresh(){
         now = LocalDateTime.now();
-        drinks = new DrinkCounter(dtf.format(now));
-        water = new DrinkCounter(dtf2.format(now));
+        drinks = new DrinkCounter(dtf.format(now), drinkCount);
+        water = new DrinkCounter(dtf2.format(now), waterCount);
+        drinkCount=0;
+        waterCount=0;
         txtDrinks.setText(Integer.toString(drinks.getCount()));
         txtWater.setText((Integer.toString(water.getCount())));
     }
@@ -128,7 +137,11 @@ public class MainActivity extends AppCompatActivity {
         return false;
     } protected void onPause() {
         super.onPause();
-
+        SharedPreferences prefPut = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = prefPut.edit();
+        prefEditor.putInt("Drinks", drinks.getCount());
+        prefEditor.putInt("Waters", water.getCount());
+        prefEditor.commit();
 
     }
 

@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
-        android:id="@+id/vesiAmount"
+        android:id="@+id/txtJotainAsiaa"
         android:layout_width="73dp"
         android:layout_height="23dp"
         android:text="TextView"

@@ -14,29 +14,47 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;
 private TabLayout tabLayout;
 private Intent intentMain;
 private ProgressBar progressBar;
 private TextView progressText;
-int vesiMaara = 10;
+private TextView txtDrinksAmmount;
+private int daysDrink;
+private String retrieveKey;
+private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+private DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+LocalDateTime now = LocalDateTime.now();
+private int waterAmmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_view);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
-
+        txtDrinksAmmount = (TextView) findViewById(R.id.olutAmount);
+        progressBar = findViewById(R.id.progress_bar);
+        progressText = findViewById(R.id.progress_text);
+        //set the drink textview
+        showValues(now.format(dtf));
+        //activates water progressbar
+        doProgressBar(now.format(dtf2));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //when day is clicked on calendar, returns year,month and day
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+                month++;
                 //displays selected day onscreen
-                String date = dayOfMonth+"/"+(month+1)+"/"+year;
+                String date = dayOfMonth+"/"+month+"/"+year;
+                showValues(dayOfMonth+"/"+month+"/"+year);
+                doProgressBar(year+"/"+month+"/"+dayOfMonth);
                 Toast.makeText(getBaseContext(), "Selected date "+date,Toast.LENGTH_LONG).show();
-                Log.i("CalendarView says date is", date);
+                Log.i("CalendarView says date is", date+" "+now.format(dtf)+" "+now.format(dtf));
             }
         });
 
@@ -71,28 +89,38 @@ int vesiMaara = 10;
 
             }
         });
-        //Progress pyörän toiminta,
-        progressBar = findViewById(R.id.progress_bar);
-        progressText = findViewById(R.id.progress_text);
+        }
+        private void doProgressBar(String dayToday){
+            //Progress pyörän toiminta,
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
+            waterAmmount = Safehouse.getInstance().safehouseRetrieve(dayToday);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
-                // Asettaa Limitin veden määrälle ennen kun se on täynnä.
-                // Lisätään juominen määrä keskelle.
-                // Samalla haetaan int tieto vedestä.
-                if (vesiMaara <= 100) {
-                    progressText.setText("Juomien Määrä " + vesiMaara/10);
-                    progressBar.setProgress(vesiMaara);
-                    vesiMaara++;
-                    handler.postDelayed(this, 200);
-                } else {
-                    handler.removeCallbacks(this);
+                    // Asettaa Limitin veden määrälle ennen kun se on täynnä.
+                    // Lisätään juominen määrä keskelle.
+                    // Samalla haetaan int tieto vedestä.
+                    int loop = 0;
+                    if (loop <= waterAmmount*10) {
+
+                        progressText.setText("Veden Määrä " + waterAmmount);
+                        progressBar.setProgress(loop);
+                        loop++;
+                        handler.postDelayed(this, 50);
+                    } else {
+                        handler.removeCallbacks(this);
+                    }
                 }
-            }
-        }, 200);
+            }, 50);
+        }
+    //updates ui textfields with corresponding values of dates
+    private void showValues(String dayToday){
 
+        Log.i("Update",dayToday);
+        int daysDrink = Safehouse.getInstance().safehouseRetrieve(dayToday);
+        Log.i("Mr Hacker", String.valueOf(daysDrink));
+        txtDrinksAmmount.setText(String.valueOf(daysDrink));
     }
 }
