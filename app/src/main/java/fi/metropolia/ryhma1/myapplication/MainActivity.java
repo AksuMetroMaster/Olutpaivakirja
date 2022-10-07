@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,13 +15,17 @@ import android.view.MenuItem;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+
 import com.google.android.material.tabs.TabLayout;
 
 
 public class MainActivity extends AppCompatActivity {
     private TextView txtDrinks;
     private TextView txtWater;
+    private TextView txtDrinksDay;
+    private TextView txtWaterDay;
     private DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDateTime now = LocalDateTime.now();
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private Intent intentMain;
     private int waterCount = 0;
     private int drinkCount = 0;
+    private int waterCountDay = 0;
+    private int drinkCountDay = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +45,22 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefGet = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
         waterCount = prefGet.getInt("Waters", 0);
         drinkCount = prefGet.getInt("Drinks", 0);
-
+        Log.i("Code", "I did it, I started onCreate");
+        SharedPreferences pref= getSharedPreferences("HashSave", Activity.MODE_PRIVATE);
+        HashMap<String, String> map= (HashMap<String, String>) pref.getAll();
+        for (String s : map.keySet()) {
+            String value=map.get(s);
+            String key = s;
+            Safehouse.getInstance().safehouseSave(key, Integer.valueOf(value));
+            Log.i("Code","Retrieved "+key+" "+value);
+            //Use Value
+        }
         tabLayout=(TabLayout) findViewById(R.id.momTab);
+
+        txtDrinks = findViewById(R.id.txtDrinkCounter);
+        txtWater = findViewById(R.id.txtWaterCounter);
+        txtDrinksDay = findViewById(R.id.txtDrinkCounterAllday);
+        txtWaterDay = findViewById(R.id.txtWaterCounterAllday);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -68,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        txtDrinks = findViewById(R.id.txtDrinkCounter);
-        txtWater = findViewById(R.id.txtWaterCounter);
 
         refresh();
     }
@@ -78,20 +95,25 @@ public class MainActivity extends AppCompatActivity {
         now = LocalDateTime.now();
         drinks = new DrinkCounter(dtf.format(now), drinkCount);
         water = new DrinkCounter(dtf2.format(now), waterCount);
+        waterCountDay = Safehouse.getInstance().safehouseRetrieve(dtf2.format(now));
+        drinkCountDay = Safehouse.getInstance().safehouseRetrieve(dtf.format(now));
         drinkCount=0;
         waterCount=0;
         txtDrinks.setText(Integer.toString(drinks.getCount()));
         txtWater.setText((Integer.toString(water.getCount())));
+        txtWaterDay.setText(Integer.toString(waterCountDay));
+        txtDrinksDay.setText(Integer.toString(drinkCountDay));
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
     public void sendToSafehouse(View view) {
+        now = LocalDateTime.now();
         Safehouse.getInstance().safehouseSave(drinks.getTime(), drinks.getCount());
         Safehouse.getInstance().safehouseSave(water.getTime(), water.getCount());
         for (Object i : Safehouse.getInstance().getDrunk().keySet()) {
-            Log.i("Safehouse has ",("key: " + i + " value: " + Safehouse.getInstance().getDrunk().get(i)));
+            Log.i("Code",("Safehouse has key: " + i + " value: " + Safehouse.getInstance().getDrunk().get(i)));
         }
         refresh();
 
@@ -135,11 +157,23 @@ public class MainActivity extends AppCompatActivity {
         return false;
     } protected void onPause() {
         super.onPause();
+        //tallentaa nykyiset juoma arvot että voi siirtyä kalenterin ja main activityn välillä, sekä sulkea appin
         SharedPreferences prefPut = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = prefPut.edit();
         prefEditor.putInt("Drinks", drinks.getCount());
         prefEditor.putInt("Waters", water.getCount());
         prefEditor.commit();
+
+        //tallentaa Hashmapin kun ohjelma suljetaan
+        SharedPreferences pref= getSharedPreferences("HashSave", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor= pref.edit();
+        HashMap map = Safehouse.getInstance().getDrunk();
+        for (Object s : map.keySet()) {
+            editor.putString((String) s, String.valueOf(map.get(s)));
+            Log.i("Code", "Saving "+s+" "+map.get(s));
+            editor.commit();
+        }
+
 
     }
 

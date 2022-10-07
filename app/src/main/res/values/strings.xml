@@ -8,4 +8,5 @@
     <string name="buttonReset">Reset</string>
     <string name="mainPage">Front Page</string>
     <string name="vesiButton">Lisää vesi</string>
+    <string name="saveButton">TALLENNA</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Switch;
 
 public class AsetusView extends AppCompatActivity {
@@ -28,5 +29,8 @@ public class AsetusView extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+    public void wantToDeleteEverything (View view){
+        
     }
 }

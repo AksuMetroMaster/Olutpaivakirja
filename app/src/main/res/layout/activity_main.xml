@@ -73,6 +73,21 @@
         app:layout_constraintVertical_bias="0.32999998" />
 
     <TextView
+        android:id="@+id/txtDrinkCounterAllday"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/drinksDrunk"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txtWaterCounter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
         android:id="@+id/txtWaterCounter"
         android:layout_width="110dp"
         android:layout_height="55dp"
@@ -84,6 +99,19 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/txtDrinkCounter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtDrinkCounter" />
+
+    <TextView
+        android:id="@+id/txtWaterCounterAllday"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/drinksDrunk"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtDrinkCounterAllday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtDrinkCounterAllday" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fAButtUndoWater"
@@ -146,10 +174,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
         android:onClick="sendToSafehouse"
-        android:text="DEATH"
+        android:text="@string/saveButton"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -123,6 +123,6 @@ private int waterAmmount;
         Log.i("Update",dayToday+" "+Safehouse.getInstance().getDrunk());
         int daysDrink = Safehouse.getInstance().safehouseRetrieve(dayToday);
         Log.i("Mr Hacker", String.valueOf(daysDrink));
-        txtDrinksAmmount.setText(String.valueOf(daysDrink)+" "+dayToday);
+        txtDrinksAmmount.setText(String.valueOf(daysDrink));
     }
 }
