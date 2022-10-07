@@ -21,23 +21,24 @@ public class Safehouse {
             this.values.put(key,newnum);
         }
         this.values.putIfAbsent(key, num);
-        Log.i("whats being saved", key+" "+num);
+        Log.i("Code", "whats being saved "+key+" "+num);
     }
     public void safehouseSaveNew(String key, int num){
         this.values.putIfAbsent(key,num);
-        Log.i("whats being saved", key+" "+num);
+        Log.i("Code", "whats being saved "+key+" "+num);
     }
     public Integer safehouseRetrieve(String key){
         if(this.values.containsKey(key)){
         return this.values.get(key);}else{
         return 0;}
     }
-
-    public HashMap getDrunk(){
-        return this.values;
-        }
-        public void delete(){
+    public void delete(){
+        Log.i("Code", "Deleting...");
         this.values.clear();
-        }
+        Log.i("Code", "Whats left after delete "+this.values);
+    }
+    public HashMap getDrunk(){
+        return this.values;}
+
 
 }

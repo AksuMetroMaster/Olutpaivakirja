@@ -88,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
 
         refresh();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refresh();
+    }
+
     //resetoi näytön arvot takaisin nollaan ja aloittaa uuden laskun
     private void refresh(){
         now = LocalDateTime.now();

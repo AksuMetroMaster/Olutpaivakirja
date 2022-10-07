@@ -33,6 +33,8 @@ public class AsetusView extends AppCompatActivity {
         return false;
     }
     public void wantToDeleteEverything (View view){
+
+        Safehouse.getInstance().delete();
         SharedPreferences pref = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
         SharedPreferences pref2= getSharedPreferences("HashSave", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
@@ -41,6 +43,6 @@ public class AsetusView extends AppCompatActivity {
         editor.commit();
         editor2.clear();
         editor2.commit();
-        Safehouse.getInstance().delete();
+
     }
 }

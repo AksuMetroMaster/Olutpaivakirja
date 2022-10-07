@@ -9,4 +9,6 @@
     <string name="mainPage">Front Page</string>
     <string name="vesiButton">Lisää vesi</string>
     <string name="saveButton">TALLENNA</string>
+    <string name="calendarDrunk">Olut Määrä</string>
+    <string name="progressText">Vesi Määrä</string>
 </resources>
