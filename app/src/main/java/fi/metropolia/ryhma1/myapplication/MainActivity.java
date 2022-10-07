@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         txtDrinksDay = findViewById(R.id.txtDrinkCounterAllday);
         txtWaterDay = findViewById(R.id.txtWaterCounterAllday);
 
+
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         refresh();
     }
+
 
     @Override
     protected void onResume() {
