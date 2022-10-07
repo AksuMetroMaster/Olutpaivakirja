@@ -12,10 +12,8 @@ import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 
 import com.google.android.material.tabs.TabLayout;
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         for (String s : map.keySet()) {
             String value=map.get(s);
             String key = s;
-            Safehouse.getInstance().safehouseSave(key, Integer.valueOf(value));
+            Safehouse.getInstance().safehouseSaveNew(key, Integer.valueOf(value));
             Log.i("Code","Retrieved "+key+" "+value);
             //Use Value
         }
@@ -157,12 +155,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     } protected void onPause() {
         super.onPause();
-        //tallentaa nykyiset juoma arvot että voi siirtyä kalenterin ja main activityn välillä, sekä sulkea appin
-        SharedPreferences prefPut = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor prefEditor = prefPut.edit();
-        prefEditor.putInt("Drinks", drinks.getCount());
-        prefEditor.putInt("Waters", water.getCount());
-        prefEditor.commit();
+
 
         //tallentaa Hashmapin kun ohjelma suljetaan
         SharedPreferences pref= getSharedPreferences("HashSave", Activity.MODE_PRIVATE);

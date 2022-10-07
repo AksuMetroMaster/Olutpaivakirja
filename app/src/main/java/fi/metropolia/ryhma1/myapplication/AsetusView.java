@@ -3,6 +3,8 @@ package fi.metropolia.ryhma1.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +33,14 @@ public class AsetusView extends AppCompatActivity {
         return false;
     }
     public void wantToDeleteEverything (View view){
-        
+        SharedPreferences pref = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
+        SharedPreferences pref2= getSharedPreferences("HashSave", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        SharedPreferences.Editor editor2 = pref2.edit();
+        editor.clear();
+        editor.commit();
+        editor2.clear();
+        editor2.commit();
+        Safehouse.getInstance().delete();
     }
 }

@@ -23,6 +23,10 @@ public class Safehouse {
         this.values.putIfAbsent(key, num);
         Log.i("whats being saved", key+" "+num);
     }
+    public void safehouseSaveNew(String key, int num){
+        this.values.putIfAbsent(key,num);
+        Log.i("whats being saved", key+" "+num);
+    }
     public Integer safehouseRetrieve(String key){
         if(this.values.containsKey(key)){
         return this.values.get(key);}else{
@@ -31,6 +35,9 @@ public class Safehouse {
 
     public HashMap getDrunk(){
         return this.values;
+        }
+        public void delete(){
+        this.values.clear();
         }
 
 }
