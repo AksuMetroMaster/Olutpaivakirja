@@ -54,7 +54,7 @@ private int waterAmmount;
                 String date2 = new SimpleDateFormat("yyyy/MM/dd").format(new Date(year+"/"+month+"/"+dayOfMonth));
                 showValues(date);
                 doProgressBar(date2);
-                Toast.makeText(getBaseContext(), "Selected date "+date+" "+date2,Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "Selected date "+date+" "+date2,Toast.LENGTH_LONG).show();
                 Log.i("CalendarView says date is", date+" "+date2+" "+now.format(dtf));
 
             }
@@ -118,12 +118,12 @@ private int waterAmmount;
                         progressText.setText("Vettä juotu " + waterAmmount);
                         progressBar.setProgress(loop[0]);
                         loop[0]++;
-                        handler.postDelayed(this, 50);
+                        handler.postDelayed(this, 20);
                     } else {
                         handler.removeCallbacks(this);
                     }
                 }
-            }, 50);
+            }, 20);
         }
     //updates ui textfields with corresponding values of dates
     private void showValues(String dayToday){
