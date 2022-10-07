@@ -96,7 +96,14 @@ private int waterAmmount;
             //Progress pyörän toiminta,
 
             waterAmmount = Safehouse.getInstance().safehouseRetrieve(dayToday);
+            int max = 100;
+            int water= waterAmmount*10;
+            if(water <max){
+                max = water;
+            }
             final Handler handler = new Handler();
+            int finalMax = max;
+            final int[] loop = {0};
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -104,12 +111,13 @@ private int waterAmmount;
                     // Asettaa Limitin veden määrälle ennen kun se on täynnä.
                     // Lisätään juominen määrä keskelle.
                     // Samalla haetaan int tieto vedestä.
-                    int loop = 0;
-                    if (loop <= waterAmmount*10) {
 
-                        progressText.setText("Veden Määrä " + waterAmmount);
-                        progressBar.setProgress(loop);
-                        loop++;
+
+                    if (loop[0] <= finalMax) {
+
+                        progressText.setText("Vettä juotu " + waterAmmount);
+                        progressBar.setProgress(loop[0]);
+                        loop[0]++;
                         handler.postDelayed(this, 50);
                     } else {
                         handler.removeCallbacks(this);

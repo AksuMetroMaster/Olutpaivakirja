@@ -5,7 +5,6 @@
     android:id="@+id/calendarTab"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="@string/calendarButton"
     tools:context=".CalendarViewControl">
 
     <CalendarView
@@ -81,8 +80,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="@string/progressText"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="28sp"
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <ProgressBar
