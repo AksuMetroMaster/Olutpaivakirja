@@ -23,7 +23,6 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     private TextView txtDrinks;
     private TextView txtWater;
-    private Object Menu;
     private DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDateTime now = LocalDateTime.now();
@@ -91,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     public void sendToSafehouse(View view) {
         Safehouse.getInstance().safehouseSave(drinks.getTime(), drinks.getCount());
         Safehouse.getInstance().safehouseSave(water.getTime(), water.getCount());
-
         for (Object i : Safehouse.getInstance().getDrunk().keySet()) {
             Log.i("Safehouse has ",("key: " + i + " value: " + Safehouse.getInstance().getDrunk().get(i)));
         }

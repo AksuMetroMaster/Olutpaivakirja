@@ -14,8 +14,10 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;
@@ -24,8 +26,6 @@ private Intent intentMain;
 private ProgressBar progressBar;
 private TextView progressText;
 private TextView txtDrinksAmmount;
-private int daysDrink;
-private String retrieveKey;
 private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 private DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 LocalDateTime now = LocalDateTime.now();
@@ -50,11 +50,13 @@ private int waterAmmount;
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
                 month++;
                 //displays selected day onscreen
-                String date = dayOfMonth+"/"+month+"/"+year;
-                showValues(dayOfMonth+"/"+month+"/"+year);
-                doProgressBar(year+"/"+month+"/"+dayOfMonth);
-                Toast.makeText(getBaseContext(), "Selected date "+date,Toast.LENGTH_LONG).show();
-                Log.i("CalendarView says date is", date+" "+now.format(dtf)+" "+now.format(dtf));
+                String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(month+"/"+dayOfMonth+"/"+year));
+                String date2 = new SimpleDateFormat("yyyy/MM/dd").format(new Date(year+"/"+month+"/"+dayOfMonth));
+                showValues(date);
+                doProgressBar(date2);
+                Toast.makeText(getBaseContext(), "Selected date "+date+" "+date2,Toast.LENGTH_LONG).show();
+                Log.i("CalendarView says date is", date+" "+date2+" "+now.format(dtf));
+
             }
         });
 
@@ -118,9 +120,9 @@ private int waterAmmount;
     //updates ui textfields with corresponding values of dates
     private void showValues(String dayToday){
 
-        Log.i("Update",dayToday);
+        Log.i("Update",dayToday+" "+Safehouse.getInstance().getDrunk());
         int daysDrink = Safehouse.getInstance().safehouseRetrieve(dayToday);
         Log.i("Mr Hacker", String.valueOf(daysDrink));
-        txtDrinksAmmount.setText(String.valueOf(daysDrink));
+        txtDrinksAmmount.setText(String.valueOf(daysDrink)+" "+dayToday);
     }
 }

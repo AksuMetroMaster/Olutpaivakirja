@@ -25,8 +25,8 @@ public class Safehouse {
     }
     public Integer safehouseRetrieve(String key){
         if(this.values.containsKey(key)){
-        return this.values.get(key);}
-        return 0;
+        return this.values.get(key);}else{
+        return 0;}
     }
 
     public HashMap getDrunk(){
