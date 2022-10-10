@@ -5,6 +5,9 @@ import android.util.Log;
 /**
  * Laskin
  * @author Aleksis
+ * @author Janina
+ * @author Noora
+ * @author Christian
  */
 public class DrinkCounter {
     private int count;
