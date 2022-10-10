@@ -52,6 +52,7 @@ private int waterAmmount;
         /**
          * Palauttaa kalenterin valittu päivämäärän
          * @author Aleksis
+         * @author Noora
          */
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -105,6 +106,7 @@ private int waterAmmount;
      * päivän avulla hakee safehousein hashmapiin tallennetun veden määrän ja näytää progressi baarin avulla
      * @param dayToday Kalentrin palauttama päivä
      * @author Aleksis
+     * @author Noora
      */
     private void doProgressBar(String dayToday){
             //Progress pyörän toiminta,
@@ -145,6 +147,7 @@ private int waterAmmount;
      * päivän mukaan palauttaa olueen arvon
      * @param dayToday Kalenterin palauttama päivä
      * @author Aleksis
+     * @author Noora
      */
     private void showValues(String dayToday){
 
