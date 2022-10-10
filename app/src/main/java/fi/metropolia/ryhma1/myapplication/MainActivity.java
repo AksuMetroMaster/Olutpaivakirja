@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * poistaa juoman laskurista
      * @author Aleksis
-     * @authot Janina
+     * @author Janina
      */
     public void undoDrink(View view){
         drinks.minus();
