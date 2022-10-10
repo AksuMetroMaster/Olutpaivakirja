@@ -5,8 +5,14 @@
     android:id="@+id/calendarTab"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarViewControl">
-
+    tools:context=".CalendarViewControl"
+    tools:ignore="ExtraText">
+    /**
+    * @author Aleksis
+    * @author Janina
+    * @author Noora
+    * @author Christian
+    */
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"

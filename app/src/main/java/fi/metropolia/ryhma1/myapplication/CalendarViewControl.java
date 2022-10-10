@@ -23,6 +23,8 @@ import java.util.Date;
  * Kalenteri näkymä
  * @author Aleksis
  * @author Christian
+ * @author Janina
+ * @author Noora
  */
 public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;

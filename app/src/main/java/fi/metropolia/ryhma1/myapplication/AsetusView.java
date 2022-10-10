@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Switch;
 
 /**
- * Asetukset
+ * Asetukset ja reset nappi
  * @author Aleksis
  * @author Christian
  *

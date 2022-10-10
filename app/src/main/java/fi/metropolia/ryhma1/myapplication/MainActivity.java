@@ -20,7 +20,13 @@ import java.util.Random;
 
 import com.google.android.material.tabs.TabLayout;
 
-
+/**
+ * Ohjelman päänäkymä koodi
+ * @author Aleksis
+ * @author Janina
+ * @author Noora
+ * @author Christian
+ */
 public class MainActivity extends AppCompatActivity {
     private TextView txtDrinks;
     private TextView txtWater;
@@ -38,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private int waterCountDay = 0;
     private int drinkCountDay = 0;
     @Override
-    /**
-     * @author Aleksis
-     */
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

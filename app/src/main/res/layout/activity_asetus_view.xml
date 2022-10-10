@@ -5,8 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="wantToDeleteEverything"
-    tools:context=".AsetusView">
-
+    tools:context=".AsetusView"
+    tools:ignore="ExtraText">
+    /**
+    * @author Aleksis
+    * @author Janina
+    * @author Noora
+    * @author Christian
+    */
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"

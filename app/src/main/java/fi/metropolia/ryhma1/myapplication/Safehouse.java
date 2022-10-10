@@ -6,6 +6,7 @@ import java.util.HashMap;
 /**
  * Singleton joka tallentaa päivämäärät ja niitten juoma arvot
  * @author Aleksis
+ * @author Noora
  */
 public class Safehouse {
     private HashMap<String, Integer> values;
