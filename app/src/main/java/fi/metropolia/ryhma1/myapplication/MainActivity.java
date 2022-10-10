@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
         txtWaterDay = findViewById(R.id.txtWaterCounterAllday);
 
         recover();
+        /**
+         * nappi vaihtaa main activitystä kalenteriin.
+         * @author Janina
+         */
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
