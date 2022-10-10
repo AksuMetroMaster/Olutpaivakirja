@@ -151,9 +151,9 @@ private int waterAmmount;
      */
     private void showValues(String dayToday){
 
-        Log.i("Update",dayToday+" "+Safehouse.getInstance().getDrunk());
+        Log.i("Code","Drinks "+dayToday+" "+Safehouse.getInstance().getDrunk());
         int daysDrink = Safehouse.getInstance().safehouseRetrieve(dayToday);
-        Log.i("Mr Hacker", String.valueOf(daysDrink));
+        Log.i("Code", "Ammount "+String.valueOf(daysDrink));
         txtDrinksAmmount.setText(String.valueOf(daysDrink));
     }
 }

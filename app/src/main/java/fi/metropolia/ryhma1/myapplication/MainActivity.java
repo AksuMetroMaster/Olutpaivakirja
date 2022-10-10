@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      *Tallentaa Counter arvot Safehousiin jotta kalenteri näyttää samat arvot
+     * @author Aleksis
      */
     public void sendToSafehouse(View view) {
         now = LocalDateTime.now();
