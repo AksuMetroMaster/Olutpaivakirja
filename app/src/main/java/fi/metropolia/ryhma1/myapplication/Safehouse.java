@@ -12,6 +12,10 @@ public class Safehouse {
         return ourInstance;
     }
 
+    /**
+     * Talentaa päivämäärän ja arvon Hashmapiin
+     * @author Aleksis
+     */
     private Safehouse() {
         this.values = new HashMap<String, Integer>();
     }

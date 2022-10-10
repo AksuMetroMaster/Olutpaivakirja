@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private int waterCountDay = 0;
     private int drinkCountDay = 0;
     @Override
+    /**
+     * @author Aleksis
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -84,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         refresh();
     }
+    /**
+     * Palauttaa hauskan kommentin
+     * @author Aleksis
+     */
     private String hasuCommentti(String whatKind){
         Random r = new Random();
         switch (whatKind) {
@@ -98,7 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 return "perkele";
         }
     }
-    //Palautaa arvot Sharedpreference
+    /**
+     * Palauttaa arvot jotka on tallennettu Sharedpreferenciin tallentaa Safehousiin käyttöä varten
+     * @author Aleksis
+     */
     private void recover(){
         SharedPreferences prefGet = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
         waterCount = prefGet.getInt("Waters", 0);
@@ -115,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //resetoi näytön arvot takaisin nollaan ja aloittaa uuden laskun
+
+    /**
+     * Päivitää näkymään uudet Counter arvot
+     * @author Aleksis
+     */
     private void refresh(){
         now = LocalDateTime.now();
         drinks = new DrinkCounter(dtf.format(now), drinkCount);
@@ -130,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
+    /**
+     *Tallentaa Counter arvot Safehousiin jotta kalenteri näyttää samat arvot
+     */
     public void sendToSafehouse(View view) {
         now = LocalDateTime.now();
         Safehouse.getInstance().safehouseSave(drinks.getTime(), drinks.getCount());
@@ -142,36 +161,59 @@ public class MainActivity extends AppCompatActivity {
         refresh();
 
     }
-    //button that moves from main activity to calendar activity
+
+    /**
+     * Avaa kalenterin
+     * @author Aleksis
+     */
     public void openCalendar(View view) {
         Intent intent = new Intent(this, CalendarViewControl.class);
 
         startActivity(intent);
     }
-    //button that adds to beer counter
+
+    /**
+     * Lisää juoman laskuriin ja näytää hauskan kommentin
+     * @author Aleksis
+     */
     public void addDrink(View view){
         drinks.plus();
         Toast.makeText(getBaseContext(), hasuCommentti("plusDrink"),Toast.LENGTH_LONG).show();
         //shows counter result onscreen
         txtDrinks.setText(Integer.toString(drinks.getCount()));
     }
-    //button that adds to water counter
+    /**
+     * Lisää veden laskuriin ja näytää hauskan kommentin
+     * @author Aleksis
+     */
     public void addWater(View view){
         water.plus();
         Toast.makeText(getBaseContext(), hasuCommentti("plusWater"),Toast.LENGTH_LONG).show();
         txtWater.setText((Integer.toString(water.getCount())));
     }
-    //button that removes from beer counter
+
+    /**
+     * poistaa juoman laskurista
+     * @author Aleksis
+     */
     public void undoDrink(View view){
         drinks.minus();
         //shows counter result onscreen
         txtDrinks.setText(Integer.toString(drinks.getCount()));
     }
+    /**
+     * poistaa veden laskurista
+     * @author Aleksis
+     */
     public void undoWater(View view){
         water.minus();
         //shows counter result onscreen
         txtWater.setText(Integer.toString(water.getCount()));
     }
+    /**
+     * avaa asetukset
+     * @author Aleksis
+     */
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.actionSettings:
@@ -181,7 +223,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return false;
-    } protected void onPause() {
+    }
+
+    /**
+     * Tallentaa kaikki arvot, Hashmap ja Counter, Sharedprefernce avulla
+     * @author Aleksis
+     */
+    protected void onPause() {
         super.onPause();
         SharedPreferences prefLiquid = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editorLiquid= prefLiquid.edit();

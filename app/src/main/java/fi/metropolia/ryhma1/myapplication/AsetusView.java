@@ -32,6 +32,11 @@ public class AsetusView extends AppCompatActivity {
         }
         return false;
     }
+
+    /**
+     * Poistaaa kaikki tallennetut arvot
+     * @author Aleksis
+     */
     public void wantToDeleteEverything (View view){
 
         Safehouse.getInstance().delete();
