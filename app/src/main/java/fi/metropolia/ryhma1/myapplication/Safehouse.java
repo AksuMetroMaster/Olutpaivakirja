@@ -3,7 +3,10 @@ package fi.metropolia.ryhma1.myapplication;
 import android.util.Log;
 
 import java.util.HashMap;
-
+/**
+ * Singleton joka tallentaa päivämäärät ja niitten juoma arvot
+ * @author Aleksis
+ */
 public class Safehouse {
     private HashMap<String, Integer> values;
     private static final Safehouse ourInstance = new Safehouse();

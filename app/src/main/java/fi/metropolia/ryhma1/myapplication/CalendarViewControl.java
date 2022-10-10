@@ -19,6 +19,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+/**
+ * Kalenteri näkymä
+ * @author Aleksis
+ */
 public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;
 private TabLayout tabLayout;

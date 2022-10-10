@@ -2,7 +2,10 @@ package fi.metropolia.ryhma1.myapplication;
 
 import android.util.Log;
 
-
+/**
+ * Laskin
+ * @author Aleksis
+ */
 public class DrinkCounter {
     private int count;
     private String time;

@@ -226,11 +226,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Tallentaa kaikki arvot, Hashmap ja Counter, Sharedprefernce avulla
+     * Kun appi näkymö vaihtuu tai sulkeutuu kaytää saveAll() tallentaa kaiken
      * @author Aleksis
      */
     protected void onPause() {
         super.onPause();
+        saveAll();
+    }
+
+    /**
+     * Tallentaa kaikki arvot SharedPrefernceiin Hashmap, vesi laskuri ja juoma lasurin
+     * @author Aleksis
+     */
+    private void saveAll(){
         SharedPreferences prefLiquid = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editorLiquid= prefLiquid.edit();
         editorLiquid.putInt("Waters", water.getCount());
@@ -245,8 +253,6 @@ public class MainActivity extends AppCompatActivity {
             Log.i("Code", "Saving "+s+" "+map.get(s));
             editor.commit();
         }
-
-
     }
 
 }
