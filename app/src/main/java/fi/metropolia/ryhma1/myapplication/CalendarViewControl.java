@@ -22,6 +22,7 @@ import java.util.Date;
 /**
  * Kalenteri näkymä
  * @author Aleksis
+ * @author Christian
  */
 public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;
@@ -68,11 +69,12 @@ private int waterAmmount;
 
             }
         });
-
-        /**
-         * nappi vaihtaa kalenterista main activityyn.
-         * @author Janina
-         */
+/**
+ * @author Christian
+ * @author Janina
+ * Tab joka myös löytyy MainActivitystä eli lisää ylä tabiin vaihtoehdot ja antaa mahdollisuuden vaihtaa toiseen ruutuun ja selectaa tab 1 eikä vakio 0.
+ * tämä sitten näyttää että valittuna on tab 1(Kalenteri näkymän.)
+ */
 
         tabLayout=(TabLayout) findViewById(R.id.mainPage);
         TabLayout.Tab tab = tabLayout.getTabAt(1);
@@ -108,10 +110,12 @@ private int waterAmmount;
         }
 
     /**
-     * päivän avulla hakee safehousein hashmapiin tallennetun veden määrän ja näytää progressi baarin avulla
+     * päivän avulla hakee safehousein hashmapiin tallennetun veden määrän ja näytää progressi baarin avulla. Progress bari täyttyy dynaamisesti pienellä viiveellä luo illuusion että sitä täytetään.
      * @param dayToday Kalentrin palauttama päivä
      * @author Aleksis
      * @author Noora
+     * @author Christian
+     *
      */
     private void doProgressBar(String dayToday){
             //Progress pyörän toiminta,

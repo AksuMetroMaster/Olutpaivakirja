@@ -55,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
         recover();
         /**
          * nappi vaihtaa main activitystä kalenteriin.
+         * tab toiminto valitsee aina defoultina tab 0 eli ensimäinen joten sen voi säilyttää muutamatta.
+         * kun tab siirtyy positioon 1 vaihtuu näkymäksi kalenteri activiyt.
          * @author Janina
+         * @author Christian
          */
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -92,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
         refresh();
     }
     /**
-     * Palauttaa hauskan kommentin
+     * Palauttaa hauskan kommentin kun painaa joka vesi tai olut nappulaa.
      * @author Aleksis
+     * @author Christian
      */
     private String hasuCommentti(String whatKind){
         Random r = new Random();
@@ -219,8 +223,9 @@ public class MainActivity extends AppCompatActivity {
         txtWater.setText(Integer.toString(water.getCount()));
     }
     /**
-     * avaa asetukset
+     * avaa asetukset siirtyy AsetusViewiin.
      * @author Aleksis
+     * @author Christian
      */
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){

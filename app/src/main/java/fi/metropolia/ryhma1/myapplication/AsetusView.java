@@ -13,9 +13,15 @@ import android.widget.Switch;
 /**
  * Asetukset
  * @author Aleksis
+ * @author Christian
+ *
  */
 public class AsetusView extends AppCompatActivity {
-
+/**
+*Asetukset hakee yläpalkin josta pääsee takaisin ja asetuksista löytyy reset nappula joka nolla KAIKEN.
+ * @author Christian
+ * @author Janina
+ */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,11 @@ public class AsetusView extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * pelkkä takaisin nappi.
+     * @param item
+     * @author Christian
+     */
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
@@ -40,6 +51,7 @@ public class AsetusView extends AppCompatActivity {
     /**
      * Poistaaa kaikki tallennetut arvot
      * @author Aleksis
+     * @author Christian
      */
     public void wantToDeleteEverything (View view){
 
