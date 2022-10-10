@@ -16,7 +16,7 @@ public class Safehouse {
     }
 
     /**
-     * Talentaa päivämäärän ja arvon Hashmapiin
+     * Tallentaa päivämäärän ja arvon Hashmapiin
      * @author Aleksis
      */
     private Safehouse() {

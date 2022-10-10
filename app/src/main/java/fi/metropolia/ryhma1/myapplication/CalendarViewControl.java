@@ -69,6 +69,11 @@ private int waterAmmount;
             }
         });
 
+        /**
+         * nappi vaihtaa kalenterista main activityyn.
+         * @author Janina
+         */
+
         tabLayout=(TabLayout) findViewById(R.id.mainPage);
         TabLayout.Tab tab = tabLayout.getTabAt(1);
         tab.select();

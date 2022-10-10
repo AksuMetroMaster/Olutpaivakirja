@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     //resetoi näytön arvot takaisin nollaan ja aloittaa uuden laskun
 
     /**
-     * Päivitää näkymään uudet Counter arvot
+     * Päivittää näkymään uudet Counter arvot
      * @author Aleksis
      */
     private void refresh(){
@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Lisää juoman laskuriin ja näytää hauskan kommentin
      * @author Aleksis
+     * @author Janina
      */
     public void addDrink(View view){
         drinks.plus();
@@ -200,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * poistaa juoman laskurista
      * @author Aleksis
+     * @authot Janina
      */
     public void undoDrink(View view){
         drinks.minus();
@@ -209,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * poistaa veden laskurista
      * @author Aleksis
+     * @author Janina
      */
     public void undoWater(View view){
         water.minus();
