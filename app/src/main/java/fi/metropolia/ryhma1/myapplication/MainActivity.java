@@ -43,14 +43,19 @@ public class MainActivity extends AppCompatActivity {
     private int drinkCount = 0;
     private int waterCountDay = 0;
     private int drinkCountDay = 0;
-    @Override
 
+    /**
+     * Ohjelma käynistyy luo nappit ja liittää tekstikentät koodiin. suorittaa recover() ja refresh()
+     * @author Aleksis
+     * @author Janina
+     * @author Christian
+     */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         tabLayout=(TabLayout) findViewById(R.id.momTab);
-
         txtDrinks = findViewById(R.id.txtDrinkCounter);
         txtWater = findViewById(R.id.txtWaterCounter);
         txtDrinksDay = findViewById(R.id.txtDrinkCounterAllday);
@@ -86,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
         refresh();
     }
 
+    /**
+     * Käynnistää recover() ja refresh()
+     * @author Aleksis
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -93,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
         refresh();
     }
 
+    /**
+     * käynnistää refresh()
+     * @author Aleksis
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -227,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         txtWater.setText(Integer.toString(water.getCount()));
     }
     /**
-     * avaa asetukset siirtyy AsetusViewiin.
+     * Avaa asetukset siirtyy AsetusViewiin.
      * @author Aleksis
      * @author Christian
      */
@@ -243,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Kun appi näkymö vaihtuu tai sulkeutuu kaytää saveAll() tallentaa kaiken
+     * Kun appi näkymä vaihtuu tai sulkeutuu kaytää saveAll() tallentaa kaiken
      * @author Aleksis
      */
     protected void onPause() {

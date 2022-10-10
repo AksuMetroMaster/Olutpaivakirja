@@ -23,6 +23,13 @@ public class Safehouse {
     private Safehouse() {
         this.values = new HashMap<String, Integer>();
     }
+
+    /**
+     * Tallentaa päivämäärän ja juotu arvon. Jos avain olemassa arvojen summa tallennetaan
+     * @author Aleksis
+     * @param key päivämäärä
+     * @param num juotu arvo
+     */
     public void safehouseSave(String key, int num){
         if(this.values.containsKey(key)){
             int newnum = this.values.get(key) + num;
@@ -31,6 +38,12 @@ public class Safehouse {
         this.values.putIfAbsent(key, num);
         Log.i("Code", "whats being saved "+key+" "+num);
     }
+
+    /**
+     * Tallentaa päivämäärän ja juotu arvon. Jos avain on olemassa uusi arvo korvaa
+     * @param key päivämäärä
+     * @param num juotu arvo
+     */
     public void safehouseSaveNew(String key, int num){
         this.values.putIfAbsent(key,num);
         Log.i("Code", "whats being saved "+key+" "+num);
