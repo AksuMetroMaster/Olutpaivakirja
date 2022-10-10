@@ -11,10 +11,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Random;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -40,10 +42,67 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tabLayout=(TabLayout) findViewById(R.id.momTab);
+
+        txtDrinks = findViewById(R.id.txtDrinkCounter);
+        txtWater = findViewById(R.id.txtWaterCounter);
+        txtDrinksDay = findViewById(R.id.txtDrinkCounterAllday);
+        txtWaterDay = findViewById(R.id.txtWaterCounterAllday);
+
+        recover();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                if (tab.getPosition() == 0) {
+                    intentMain = new Intent(MainActivity.this, MainActivity.class);
+                }
+                if (tab.getPosition() == 1) {
+                    intentMain = new Intent(MainActivity.this,
+                            CalendarViewControl.class);
+                    MainActivity.this.startActivity(intentMain);
+                }
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
+
+        refresh();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recover();
+        refresh();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refresh();
+    }
+    private String hasuCommentti(String whatKind){
+        Random r = new Random();
+        switch (whatKind) {
+            case "plusWater":
+                String[] waterlist = {"\"Vesi On Märkää\"","lasi on tyhjä ? hyvää työtä harri","vesi ei ole uusiutuva resurrsi palauta se heti!","Älä koske sähkölaitteisiin märkänä"};
+                return waterlist[r.nextInt(waterlist.length)];
+
+            case "plusDrink":
+                String[] drinklist = {"Daa dirlan dirlan daa","Olet liekeissä kastele itsesi","kurkkusi on märkänä","makkara perunoiden tarpeessa ?","muista käydä saniteetti tilassa"};
+                return drinklist[r.nextInt(drinklist.length)];
+            default:
+                return "perkele";
+        }
+    }
+    //Palautaa arvot Sharedpreference
+    private void recover(){
         SharedPreferences prefGet = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
         waterCount = prefGet.getInt("Waters", 0);
         drinkCount = prefGet.getInt("Drinks", 0);
-        Log.i("Code", "I did it, I started onCreate");
         SharedPreferences pref= getSharedPreferences("HashSave", Activity.MODE_PRIVATE);
         HashMap<String, String> map= (HashMap<String, String>) pref.getAll();
         for (String s : map.keySet()) {
@@ -53,49 +112,6 @@ public class MainActivity extends AppCompatActivity {
             Log.i("Code","Retrieved "+key+" "+value);
             //Use Value
         }
-        tabLayout=(TabLayout) findViewById(R.id.momTab);
-
-        txtDrinks = findViewById(R.id.txtDrinkCounter);
-        txtWater = findViewById(R.id.txtWaterCounter);
-        txtDrinksDay = findViewById(R.id.txtDrinkCounterAllday);
-        txtWaterDay = findViewById(R.id.txtWaterCounterAllday);
-
-
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-                if (tab.getPosition() == 0) {
-                    intentMain = new Intent(MainActivity.this, MainActivity.class);
-
-                }
-                if (tab.getPosition() == 1) {
-                    intentMain = new Intent(MainActivity.this,
-                            CalendarViewControl.class);
-                    Log.e("TEST", "Painettiin toista");
-                    MainActivity.this.startActivity(intentMain);
-                }
-            }
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        refresh();
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        refresh();
     }
 
     //resetoi näytön arvot takaisin nollaan ja aloittaa uuden laskun
@@ -105,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
         water = new DrinkCounter(dtf2.format(now), waterCount);
         waterCountDay = Safehouse.getInstance().safehouseRetrieve(dtf2.format(now));
         drinkCountDay = Safehouse.getInstance().safehouseRetrieve(dtf.format(now));
-        drinkCount=0;
-        waterCount=0;
         txtDrinks.setText(Integer.toString(drinks.getCount()));
         txtWater.setText((Integer.toString(water.getCount())));
         txtWaterDay.setText(Integer.toString(waterCountDay));
@@ -123,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
         for (Object i : Safehouse.getInstance().getDrunk().keySet()) {
             Log.i("Code",("Safehouse has key: " + i + " value: " + Safehouse.getInstance().getDrunk().get(i)));
         }
+        drinkCount=0;
+        waterCount=0;
         refresh();
 
     }
@@ -135,12 +151,14 @@ public class MainActivity extends AppCompatActivity {
     //button that adds to beer counter
     public void addDrink(View view){
         drinks.plus();
+        Toast.makeText(getBaseContext(), hasuCommentti("plusDrink"),Toast.LENGTH_LONG).show();
         //shows counter result onscreen
         txtDrinks.setText(Integer.toString(drinks.getCount()));
     }
     //button that adds to water counter
     public void addWater(View view){
         water.plus();
+        Toast.makeText(getBaseContext(), hasuCommentti("plusWater"),Toast.LENGTH_LONG).show();
         txtWater.setText((Integer.toString(water.getCount())));
     }
     //button that removes from beer counter
@@ -165,8 +183,11 @@ public class MainActivity extends AppCompatActivity {
         return false;
     } protected void onPause() {
         super.onPause();
-
-
+        SharedPreferences prefLiquid = getSharedPreferences("Arvot", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editorLiquid= prefLiquid.edit();
+        editorLiquid.putInt("Waters", water.getCount());
+        editorLiquid.putInt("Drinks",drinks.getCount());
+        editorLiquid.commit();
         //tallentaa Hashmapin kun ohjelma suljetaan
         SharedPreferences pref= getSharedPreferences("HashSave", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor= pref.edit();
