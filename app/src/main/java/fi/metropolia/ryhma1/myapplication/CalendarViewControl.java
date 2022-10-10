@@ -19,6 +19,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+/**
+ * Kalenteri näkymä
+ * @author Aleksis
+ */
 public class CalendarViewControl extends AppCompatActivity {
 private CalendarView calendarView;
 private TabLayout tabLayout;
@@ -45,6 +49,11 @@ private int waterAmmount;
         doProgressBar(now.format(dtf2));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //when day is clicked on calendar, returns year,month and day
+        /**
+         * Palauttaa kalenterin valittu päivämäärän
+         * @author Aleksis
+         * @author Noora
+         */
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
@@ -92,7 +101,14 @@ private int waterAmmount;
             }
         });
         }
-        private void doProgressBar(String dayToday){
+
+    /**
+     * päivän avulla hakee safehousein hashmapiin tallennetun veden määrän ja näytää progressi baarin avulla
+     * @param dayToday Kalentrin palauttama päivä
+     * @author Aleksis
+     * @author Noora
+     */
+    private void doProgressBar(String dayToday){
             //Progress pyörän toiminta,
 
             waterAmmount = Safehouse.getInstance().safehouseRetrieve(dayToday);
@@ -126,6 +142,13 @@ private int waterAmmount;
             }, 20);
         }
     //updates ui textfields with corresponding values of dates
+
+    /**
+     * päivän mukaan palauttaa olueen arvon
+     * @param dayToday Kalenterin palauttama päivä
+     * @author Aleksis
+     * @author Noora
+     */
     private void showValues(String dayToday){
 
         Log.i("Update",dayToday+" "+Safehouse.getInstance().getDrunk());

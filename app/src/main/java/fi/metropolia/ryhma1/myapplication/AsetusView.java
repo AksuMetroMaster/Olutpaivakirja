@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
 
+/**
+ * Asetukset
+ * @author Aleksis
+ */
 public class AsetusView extends AppCompatActivity {
 
     @Override
@@ -32,6 +36,11 @@ public class AsetusView extends AppCompatActivity {
         }
         return false;
     }
+
+    /**
+     * Poistaaa kaikki tallennetut arvot
+     * @author Aleksis
+     */
     public void wantToDeleteEverything (View view){
 
         Safehouse.getInstance().delete();
